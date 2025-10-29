@@ -1,4 +1,4 @@
-# Guia de referència: Ús de GitHub per a treball en equip usant branques
+# Guia de referència: Ús de GitHub en treball en equip
 
 ## 1. Introducció a l'ús de github com a eina per a desenvolupar en equip
 
@@ -100,14 +100,14 @@ git branch
 ## 5. Commits i sincronització
 
 ### Afegir canvis a l'índex
+Els commits **sempre s’han de fer des de la branca de treball (feature-nom)**, no directament a `main`.
+
+Exemple:
 ```bash
 git add fitxer.html
-```
-
-### Fer un commit amb un missatge clar
-```bash
 git commit -m "Afegit l'encapçalament amb logo i menú"
 ```
+Així els canvis queden registrats a la teva branca (`feature-nom`) i més endavant es podran integrar a `main` mitjançant una *Pull Request*.
 
 ### Sincronitzar amb el repositori remot
 ```bash
@@ -135,11 +135,25 @@ El desenvolupador ha de decidir quina versió mantenir, esborrar els marcadors i
 ## 7. Pull Requests i revisió de codi
 
 Un cop acabada una tasca:
-1. Es fa `push` de la branca.
-2. A GitHub, es crea una **Pull Request (PR)** cap a `main`.
-3. Un altre membre revisa els canvis, comenta si cal i aprova.
 
-Aquest procés millora la qualitat del codi i assegura que tothom està informat dels canvis.
+1. Assegura’t que estàs a **la teva branca de treball (feature-nom)** i que el repositori local està actualitzat amb el remot:
+```bash
+git checkout feature-nom
+git fetch origin
+git merge origin/main
+```
+
+2. Fes `push` de la teva branca (un cop sincronitzada):
+```bash
+git push origin feature-nom
+```
+
+3. A GitHub, crea una **Pull Request (PR)** cap a `main` perquè els companys puguin revisar els canvis.
+
+4. Un altre membre revisa els canvis, comenta si cal i aprova.
+
+> 💡 **Consell:** fer `fetch` i `merge` abans de pujar canvis ajuda a evitar conflictes i assegura que treballes amb la versió més recent del projecte.
+
 
 ---
 
